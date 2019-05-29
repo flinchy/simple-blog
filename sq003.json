@@ -1,0 +1,42 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "json-server",
+        "body": "This is the first content",
+        "author": "typicode"
+      },
+      {
+        "title": "Avengers",
+        "body": "This is the second content",
+        "author": "John",
+        "id": 2
+      },
+      {
+        "title": "End Game",
+        "body": "This is the third content",
+        "author": "typicode",
+        "id": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "body": "some comment",
+        "postId": 1
+      },
+      {
+        "body": "some other comment",
+        "postId": 1,
+        "id": 2
+      },
+      {
+        "body": "Testing the comment for postId 2",
+        "postId": 2,
+        "id": 3
+      }
+    ],
+    "profile": {
+      "name": "typicode"
+    }
+  }
