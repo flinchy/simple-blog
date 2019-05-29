@@ -1,20 +1,23 @@
 
 //Ajax call to Get all the post on the Welcome page
-$(function () {
+$(() => {
     let $posts = $('#posts');
+
+    //get the id of the body and title from the create post page
+    $body = $('#body');
+    $title = $('#title');
 
     $.ajax({
         type: 'GET',
         url: 'http://localhost:3000/posts',
-        success: function(post) {
-            $.each(post, function(i, post) {
+        success: (post) => {
+            $.each(post, (i, post) => {
                 $posts.append(` <div class="col-md-8 mr-auto">
 
                 <div class="card border-light mb-3">
                   <div class="card-body">
                     <h4 class="card-title">${post.title}</h4>
-                    <p class="card-text">Some quick example text to build on the card title
-                       and make up the bulk of the card's content.</p>
+                    <p class="card-text">${post.body}.</p>
                   </div>
                 </div>
               </div>
@@ -22,4 +25,31 @@ $(function () {
             })
         }
     });
+
+    //Adds a post to the database
+    $('#add-post').on('click', () => {
+      let post = {
+        title: $title.val(),
+        body: $body.val()
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:3000/posts',
+        data: post,
+        success: (newPost) => {
+          $posts.append(` <div class="col-md-8 mr-auto">
+              <div class="card border-light mb-3">
+                <div class="card-body">
+                  <h4 class="card-title">${newPost.title}</h4>
+                  <p class="card-text">${newPost.body}.</p>
+                </div>
+              </div>
+            </div>
+          `);
+        }
+
+      })
+    });
+
 });
