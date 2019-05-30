@@ -44,25 +44,39 @@
             </div>
           </nav>
     </header>
-    
-    <h2>Post Table</h2>
+
     <div class="container">
-        <table class="table table-hover" id="postsTable">
+        <h2>Post Table</h2>
+        <button id="newPostBtn" class="btn btn-primary btn-block">New Post</button><br /><br />
+       
+        <form id="newForm">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" id="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input class="form-control" type="text" id="author" placeholder="Author">
+            </div>
+            <div class="form-group">
+            <label for="body">Body</label>
+            <textarea class="form-control" id="body" rows="3" placeholder="Say something..."></textarea>
+            </div>
+            <button type="submit" id="submitPost" class="btn btn-outline-primary mb-5">Create Post</button>
+        </form>
+
+        <table class="table table-bordered table-hover" id="postsTable">
             <thead>
                 <tr>
                 <th scope="col">id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Body</th>
                 <th scope="col">Author</th>
+                <th scope="col"></th>
                 </tr>
             </thead>
             <tbody id="postsBody">
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
+              
             </tbody>
         </table>
     </div>
@@ -75,3 +89,93 @@
 </body>
 </html>
 
+
+
+
+
+
+<!-- 
+
+<html>
+    <head>
+        <title>HTTP AJAX Methods - Easy jQuery Tutorial</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Post Table</h1>
+            <button id="newPostBtn" class="btn btn-primary btn-block">New Post</button><br /><br />
+            <form id="newForm">
+              <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">Title</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" placeholder="Title">
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="body" class="col-sm-2 col-form-label">Body</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="body" placeholder="body">
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="author" class="col-sm-2 col-form-label">Author</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="author" placeholder="Author">
+                  </div>
+              </div>
+              <button id="submitTutorial" type="submit" class="btn btn-primary">Add Tutorial</button>
+            </form>
+            
+            <div id="updateFormDiv">
+                <form id="updateForm">
+                  <div class="form-group row">
+                      <div class="col-sm-10">
+                        <input type="hidden" class="form-control" id="tutId">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="updateNum" class="col-sm-2 col-form-label">Tutorial Number</label>
+                      <div class="col-sm-10">
+                        <input type="number" class="form-control" id="updateNum" placeholder="Tutorial Number">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="updateTitle" class="col-sm-2 col-form-label">Title</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="updateTitle" placeholder="Title">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="updateAuthor" class="col-sm-2 col-form-label">Author</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="updateAuthor" placeholder="Author">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="updateType" class="col-sm-2 col-form-label">Type</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="updateType" placeholder="Tutorial Type">
+                      </div>
+                  </div>
+                  <button id="updateTutorial" type="submit" class="btn btn-primary">Update Tutorial</button>
+                </form>
+            </div>
+            <table id="tutorialsTable" class="table table-bordered table-hover">
+                <thead>
+                    <th>Tutorial Number</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Tutorial Type</th>
+                    <th>DB ID</th>
+                    <th>Controls</th>
+                </thead>
+                <tbody id="tutorialsBody"></tbody>
+            </table>
+        </div>
+    </body>
+</html> -->
