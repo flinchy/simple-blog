@@ -33,6 +33,7 @@ $(document).ready(function() {
               <i class="fas fa-trash deletePost" data-pid="`+post.id+`"></i>
             `)));
         });
+        //calling the loadButton function after the page loads
         loadButtons();
       }
     });
@@ -86,15 +87,21 @@ $(document).ready(function() {
     });
   }
 
+  //loads the edit/delete button on the page
   function loadButtons() {
     $('.editPost').click(function(e) {
-      
       getOnePost($($(this)[0]).data('pid'));
       $('#newForm').hide();
+      e.preventDefault();
+    });
+
+    $('.deletePost').click(function(e) {
+      deletePost($($(this)[0]).data('pid'));
       e.preventDefault();
     })
   }
 
+  //This function updates the post
   function putPost(id, data) {
     $.ajax({
       url: 'http://localhost:3000/posts/' + id,
@@ -121,6 +128,19 @@ $(document).ready(function() {
     e.preventDefault();
   });
   
+
+  //Deletes A post
+  function deletePost(id) {
+    $.ajax({
+      url: 'http://localhost:3000/posts/' + id,
+      method: 'DELETE',
+      dataType: 'json',
+      success: function(data) {
+        console.log(data);
+        getPosts();
+      }
+    });
+  }
   
 });
 
