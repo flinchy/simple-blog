@@ -1,10 +1,10 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
+      "title": "json-server Updated",
       "body": "This is the first content",
-      "author": "typicode"
+      "author": "typicode",
+      "id": 1
     },
     {
       "title": "Avengers",
@@ -21,6 +21,7 @@
     {
       "title": "Testing Django",
       "body": "Testing 1,2,3,4",
+      "author": "Updated",
       "id": 4
     },
     {
@@ -30,22 +31,10 @@
       "id": 5
     },
     {
-      "title": "Testing",
-      "body": "Who are you",
-      "author": "Chisom",
+      "title": "NEEEE Updated",
+      "body": "something good...",
+      "author": "Decagon",
       "id": 6
-    },
-    {
-      "title": "Spider man home coming",
-      "body": "he is coming back home. All you have to do is wait",
-      "author": "Chisom",
-      "id": 7
-    },
-    {
-      "title": "Decagon",
-      "body": "Hello decagon, you are awesome",
-      "author": "Chisom",
-      "id": 8
     }
   ],
   "comments": [

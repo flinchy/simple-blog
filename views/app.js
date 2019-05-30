@@ -1,76 +1,12 @@
-
-// $(document).ready(() => {
-
-//   //Ajax call to Get all the post on the Welcome page
-  
-//   let $posts = $('#posts');
-
-//   //get the id of the body and title from the create post page
-//   $body = $('#body');
-//   $title = $('#title');
-
-
-//   $.ajax({
-//       type: 'GET',
-//       url: 'http://localhost:3000/posts',
-//       success: (post) => {
-//           $.each(post, (i, post) => {
-//               $posts.append(` <div class="col-md-8 mr-auto">
-
-//               <div class="card border-light mb-3">
-//                 <div class="card-body">
-//                   <h4 class="card-title">${post.title}</h4>
-//                   <p class="card-text">${post.body}.</p>
-//                 </div>
-//                 <hr>
-//                 <div>
-//                 <a href="#" class="btn btn-outline-success" id="myBtn">Read More</a>
-//                 </div>
-              
-//               </div>
-//             </div>
-//               `);
-             
-//             $('#myBtn').on('click',function() {  
-//               console.log( 'hello' );
-//             });    
-              
-//           })
-//       }
-//   });
-  
- 
-//   //Adds a post to the database
-//   $('#add-post').on('click', () => {
-//     let post = {
-//       title: $title.val(),
-//       body: $body.val()
-//     };
-
-//     $.ajax({
-//       type: 'POST',
-//       url: 'http://localhost:3000/posts',
-//       data: post,
-//       success: (newPost) => {
-    
-//         $posts.append(` <div class="col-md-8 mr-auto">
-//             <div class="card border-light mb-3">
-//               <div class="card-body">
-//                 <h4 class="card-title">${newPost.title}</h4>
-//                 <p class="card-text">${newPost.body}.</p>
-//               </div>
-//             </div>
-//           </div>
-//         `);
-//       }
-
-//     })
-//   });
-
-// });
-
+//How to target the buttons (edit/delete buttons) in the post table
+//since javascript works from top to botttom, we need to find a way
+//to load the buttons before any of the methods we defined below will actually load
+//so we created load buttons
 
 $(document).ready(function() {
+
+  //hides the update form div
+  $('#updateForm').hide();
 
   getPosts();
   $('#newPostBtn').on('click', function(e) {
@@ -82,9 +18,9 @@ $(document).ready(function() {
       url: 'http://localhost:3000/posts',
       method: 'GET',
       dataType: 'json',
-      data: {
-        test: 'test data'
-      },
+      // data: {
+      //   test: 'test data'
+      // },
       success: function(data) {
         $(data).each(function(i, post) {
           $('#postsBody').append($('<tr>')
@@ -93,14 +29,35 @@ $(document).ready(function() {
             .append($('<td>').append(post.body))
             .append($('<td>').append(post.author))
             .append($("<td>").append(`
-              <i class="far fa-edit editPost" data-tutid="`+post.id+`"></i> 
-              <i class="fas fa-trash deletePost" data-tutid="`+post.id+`"></i>
+              <i class="far fa-edit editPost" data-pid="`+post.id+`"></i> 
+              <i class="fas fa-trash deletePost" data-pid="`+post.id+`"></i>
             `)));
-        })
+        });
+        loadButtons();
       }
     });
   }
 
+
+  //for our update function we need to get only one post hence the getOnePost function
+  function getOnePost(id) {
+    $.ajax({
+      url: 'http://localhost:3000/posts/' + id,
+      method: 'GET',
+      datatype: 'json',
+      success: function(data) {
+        $($('#updateForm')[0].singlePostID).val(data.id);
+        $($('#updateForm')[0].updateTitle).val(data.title);
+        $($('#updateForm')[0].updateAuthor).val(data.author);
+        $($('#updateForm')[0].updateBody).val(data.body);
+        $('#updateForm').show();
+        
+
+      }
+    });
+  }
+
+  //events that if fired when you click the create post button
   $('#submitPost').on('click', function(e) {
     let data = {
       title: $($('#newForm')[0].title).val(),
@@ -108,12 +65,15 @@ $(document).ready(function() {
       author: $($('#newForm')[0].author).val()
     }
 
-    savePost(data);
-    $('#newForm').trigger('reset');
+    createPost(data);
+    $('#newForm').trigger('reset');//resets the form field after you submit post
+    $('#newForm').toggle(); // toggles the form back after it resets
     e.preventDefault();
   });
 
-  function savePost(data) {
+
+  //This function creates a new post in the database
+  function createPost(data) {
     $.ajax({
       url: 'http://localhost:3000/posts',
       method: 'POST',
@@ -125,6 +85,41 @@ $(document).ready(function() {
       }
     });
   }
+
+  function loadButtons() {
+    $('.editPost').click(function(e) {
+      
+      getOnePost($($(this)[0]).data('pid'));
+      $('#newForm').hide();
+      e.preventDefault();
+    })
+  }
+
+  function putPost(id, data) {
+    $.ajax({
+      url: 'http://localhost:3000/posts/' + id,
+      method: 'PUT',
+      dataType: 'json',
+      data: data,
+      success: function(data) {
+        console.log(data);
+        getPosts();
+      }
+    });
+  }
+
+  $('#submitUpdate').on('click', function(e) {
+    let data = {
+      title: $($('#updateForm')[0].updateTitle).val(),
+      body: $($('#updateForm')[0].updateBody).val(),
+      author: $($('#updateForm')[0].updateAuthor).val()
+    }
+
+    putPost($($('#updateForm')[0].singlePostID).val(), data);
+    $('#updateForm').trigger('reset');//resets the form field after you submit post
+    $('#updateForm').toggle(); // toggles the form back after it resets
+    e.preventDefault();
+  });
   
   
 });
