@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>A single post</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="https://bootswatch.com/4/simplex/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="../public/custom.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarColor03">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="welcome.html">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+              </ul>
+
+              <li class="navbar-nav nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="post/index.html"><i class="fas fa-blog"></i> Post</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </li>
+
+              <ul class="form-inline my-2 my-lg-0">    
+                <li class=" navbar-nav nav-item">
+                    <a class="nav-link" href="#">Join The Community</a>
+                </li>  
+              </ul>
+            </div>
+          </nav>
+    </header>
+
+    <div class="col-md-8 container">
+      <div class="row">
+        <div class="col-md-12" >
+            <div class="card">
+                <img class="card-img-bottom" style="height: 400px;" src="https://i.pinimg.com/originals/94/dd/57/94dd573e4b4de604ea7f33548da99fd6.jpg" alt="">
+             
+                <div class="card-body">
+                  <h2 class="card-title" id="singleTitle">Good</h2>
+                    <p class="card-text">Where does it come from?
+                    Contrary to popular belief, Lorem Ipsum is not simply 
+                    random text. It has roots in a piece of classical Latin 
+                    literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                    a Latin professor at Hampden-Sydney College in Virginia, 
+                    looked up one of the more obscure Latin words, consectetur, 
+                    from a Lorem Ipsum passage, and going through the cites of the word 
+                    "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-md-8">
+            <h2><span class="text-muted mt-10">0 comments</span></h2>
+
+            <div class="" id="myComment">
+              <p>My comment</p>
+            </div>
+        </div>
+      </div>
+    
+
+        <form>
+          <div class="form-group mt-10">
+              <textarea class="form-control" rows="3" placeholder="Comment...." id="body"></textarea>
+          </div>
+          <button id= "submitComment" type="submit" class="btn btn-outline-success btn-lg">Add Comment</button> 
+        </form>  
+    </div>
+
+    <script src="../public/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+    <script src="app.js"></script>
+
+    <script>
+       $(document).ready(function() {
+         
+          $.ajax({
+            url: 'http://localhost:3000/posts?_embed=comments',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+             
+             console.log(data);
+            }
+          });
+        
+    });
+    </script>
+</body>
+</html>
+
