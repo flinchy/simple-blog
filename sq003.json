@@ -1,31 +1,55 @@
 {
   "posts": [
     {
-      "title": "json-server Updated",
-      "body": "This is the first content",
-      "author": "typicode",
-      "id": 1
+      "title": "New Day",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the",
+      "author": "Decagon",
+      "id": 3
     },
     {
-      "title": "Wonder woman",
-      "body": "Say something very nice",
+      "title": "Spider man home coming",
+      "body": "This is yet another one from me",
       "author": "Chisom",
-      "id": 2
+      "id": 4
+    },
+    {
+      "title": "This is so Awesome",
+      "body": "Nice to meet with you",
+      "author": "Blogger",
+      "id": 5
+    },
+    {
+      "title": "Second Testing",
+      "body": "Still testing ",
+      "author": "Blogger",
+      "id": 6
+    },
+    {
+      "title": "Testing 2",
+      "body": "test test test",
+      "author": "chisom",
+      "id": 7
     }
   ],
   "comments": [
     {
       "id": 1,
       "body": "some comment",
-      "postId": 1
+      "postId": 6
     },
     {
+      "id": 2,
       "body": "some other comment",
-      "postId": 1,
-      "id": 2
+      "postId": 6
+    },
+    {
+      "id": 3,
+      "body": "nice job",
+      "postId": 5
     }
   ],
-  "profile": {
-    "name": "typicode"
+  "users": {
+    "email": "example@gmail.com",
+    "password": "chisom.1"
   }
 }

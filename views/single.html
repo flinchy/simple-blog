@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>A simple Blog</title>
+    <title>A single post</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="https://bootswatch.com/4/simplex/bootstrap.min.css"> -->
     <link rel="stylesheet" href="../public/css/bootstrap.min.css">
@@ -47,78 +47,68 @@
                 </li>  
               </ul>
             </div>
-        </nav>
-          
+          </nav>
     </header>
 
-    <div class="container">
+    <div class="col-md-8 container">
       <div class="row">
-        <div class="col-sm-8" id="allPost">
-        
-        </div>
-        <div class="col-sm-4">
+        <div class="col-md-12" >
             <div class="card">
-              <img src="https://webassets.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" class="card-img-top" alt="IMG">
-              <div class="card-body">
-                <h5 class="card-title">Node js</h5>
-                <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <img class="card-img-bottom" style="height: 400px;" src="https://i.pinimg.com/originals/94/dd/57/94dd573e4b4de604ea7f33548da99fd6.jpg" alt="">
+             
+                <div class="card-body">
+                  <h2 class="card-title" id="singleTitle">Good</h2>
+                    <p class="card-text">Where does it come from?
+                    Contrary to popular belief, Lorem Ipsum is not simply 
+                    random text. It has roots in a piece of classical Latin 
+                    literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                    a Latin professor at Hampden-Sydney College in Virginia, 
+                    looked up one of the more obscure Latin words, consectetur, 
+                    from a Lorem Ipsum passage, and going through the cites of the word 
+                    "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                </div>
               </div>
+        </div>
+
+        <div class="col-md-8">
+            <h2><span class="text-muted mt-10">0 comments</span></h2>
+
+            <div class="" id="myComment">
+              <p>My comment</p>
             </div>
-           
-          <div class="card">
-            <img src="https://nodejs.org/static/images/logo.svg" class="card-img-top" alt="IMG">
-            <div class="card-body">
-              <h5 class="card-title">Node js</h5>
-              <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
         </div>
       </div>
+    
+
+        <form>
+          <div class="form-group mt-10">
+              <textarea class="form-control" rows="3" placeholder="Comment...." id="body"></textarea>
+          </div>
+          <button id= "submitComment" type="submit" class="btn btn-outline-success btn-lg">Add Comment</button> 
+        </form>  
     </div>
 
     <script src="../public/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- 
-    <script>
-    $(document).ready(function() {
-      $.ajax({
-      url: 'http://localhost:3000/posts',
-      method: 'GET',
-      dataType: 'json',
-      // data: {
-      //   test: 'test data'
-      // },
-      success: function(data) {
-        $(data).each(function(i, post) {
-          $('#allPost').append(`
-        
-            <div class="card">
-            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMi4lt0nq0pzDxm8pJlKysyD8hiAMiM9pDm2k-Ot_U6ViY7L6" alt="IMG">
-            <div class="card-header">
-              <span class="text-muted"><i class="far fa-user"></i> ${post.author}</span>  |
-              <span class="text-muted"><small>23 hours ago</small></span>  |
-              <span class="text-muted"><small>2 </small><i class="far fa-comment"></i></span> |
-              <span class="text-muted"><small>3 </small><i class="far fa-heart"></i></span>
-            </div>
-            <div class="card-body">
-              <h2 class="card-title">${post.title}</h2>
-              <p class="card-text">${post.body}</p>
-              <a href="single.html" class="btn btn-outline-success btn-sm" data-pid="`+post.id+`">Read More</a>
-            </div>
-            </div>
-
-
-          `)
-        });
-      }
-    });
-    });
-    </script>
-    
+  
     <script src="app.js"></script>
 
+    <script>
+       $(document).ready(function() {
+         
+          $.ajax({
+            url: 'http://localhost:3000/posts?_embed=comments',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+             
+             console.log(data);
+            }
+          });
+        
+    });
+    </script>
 </body>
 </html>
+
